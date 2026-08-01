@@ -59,6 +59,12 @@ table {
   border-collapse: collapse;
 }
 
+.helper-text {
+  margin: 0 0 16px;
+  color: #9fb3c8;
+  font-size: 0.95rem;
+}
+
 th,
 td {
   padding: 14px 16px;
@@ -91,6 +97,29 @@ tr:nth-child(even) td {
 
 td {
   transition: background 0.2s ease, color 0.2s ease;
+}
+
+.grade-select {
+  width: 100%;
+  max-width: 110px;
+  padding: 8px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
+  background: rgba(4, 12, 22, 0.75);
+  color: #f3f6fb;
+  font: inherit;
+  cursor: pointer;
+}
+
+.grade-select:focus {
+  outline: none;
+  border-color: rgba(120, 227, 180, 0.6);
+  box-shadow: 0 0 0 2px rgba(120, 227, 180, 0.18);
+}
+
+.grade-none {
+  color: #8fa3b0;
+  font-weight: 700;
 }
 
 .grade-s {
@@ -145,6 +174,12 @@ td {
 .grade-f {
   color: #ff4d6d;
   font-weight: 700;
+}
+
+.final-grade {
+  font-weight: 700;
+  color: #78e3b4;
+  text-shadow: 0 0 10px rgba(120, 227, 180, 0.18);
 }
 
 @media (max-width: 700px) {
