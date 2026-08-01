@@ -440,6 +440,30 @@ td {
   text-shadow: 0 0 10px rgba(120, 227, 180, 0.18);
 }
 
+.notes-input {
+  width: 100%;
+  min-width: 180px;
+  padding: 8px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
+  background: rgba(4, 12, 22, 0.75);
+  color: #d6e4f0;
+  font: inherit;
+  font-size: 0.9rem;
+  resize: vertical;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.notes-input::placeholder {
+  color: #5a7a92;
+}
+
+.notes-input:focus {
+  outline: none;
+  border-color: rgba(120, 227, 180, 0.5);
+  box-shadow: 0 0 0 2px rgba(120, 227, 180, 0.14);
+}
+
 @media (max-width: 700px) {
   .page {
     padding: 24px 12px 40px;
