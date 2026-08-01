@@ -470,7 +470,16 @@ function renderTable() {
 
     const playerCell = document.createElement('td');
     playerCell.setAttribute('data-label', 'Player');
-    playerCell.textContent = entry.player;
+    playerCell.className = 'player-cell';
+    const playerName = document.createElement('span');
+    playerName.textContent = entry.player;
+    const notesToggle = document.createElement('button');
+    notesToggle.className = 'notes-toggle';
+    notesToggle.type = 'button';
+    notesToggle.setAttribute('aria-label', `Toggle notes for ${entry.player}`);
+    notesToggle.textContent = entry.notes ? '📝 Notes ▲' : '📝 Notes ▼';
+    playerCell.appendChild(playerName);
+    playerCell.appendChild(notesToggle);
     row.appendChild(playerCell);
 
     const myCell = document.createElement('td');
@@ -498,18 +507,30 @@ function renderTable() {
     finalCell.appendChild(finalSelect);
     row.appendChild(finalCell);
 
-    const notesCell = document.createElement('td');
-    notesCell.setAttribute('data-label', 'Notes');
+    tbody.appendChild(row);
+
+    const notesRow = document.createElement('tr');
+    notesRow.className = 'notes-row' + (entry.notes ? '' : ' notes-row-hidden');
+    const notesExpandCell = document.createElement('td');
+    notesExpandCell.colSpan = 5;
+    notesExpandCell.className = 'notes-expand-cell';
     const notesArea = document.createElement('textarea');
     notesArea.className = 'notes-input';
     notesArea.placeholder = 'Add notes…';
     notesArea.setAttribute('aria-label', `Notes for ${entry.player}`);
     notesArea.value = entry.notes || '';
-    notesArea.rows = 2;
-    notesCell.appendChild(notesArea);
-    row.appendChild(notesCell);
+    notesArea.rows = 3;
+    notesExpandCell.appendChild(notesArea);
+    notesRow.appendChild(notesExpandCell);
+    tbody.appendChild(notesRow);
 
-    tbody.appendChild(row);
+    notesToggle.addEventListener('click', () => {
+      const isHidden = notesRow.classList.toggle('notes-row-hidden');
+      notesToggle.textContent = isHidden ? '📝 Notes ▼' : '📝 Notes ▲';
+      if (!isHidden) {
+        notesArea.focus();
+      }
+    });
 
     [mySelect, friendSelect, historicalSelect, finalSelect].forEach((select) => {
       select.addEventListener('change', () => {
