@@ -218,7 +218,6 @@ function formatVoteSplit(voteCounts, targetPlayer) {
     .filter((count) => typeof count === 'number' && count > 0)
     .sort((left, right) => right - left);
   const split = counts.join('-');
-
   if (split) {
     return split;
   }
@@ -475,26 +474,26 @@ function renderTable() {
     row.appendChild(playerCell);
 
     const myCell = document.createElement('td');
-    myCell.setAttribute('data-label', 'My Grades');
+    myCell.setAttribute('data-label', "Bubbles' Evaluation");
     const mySelect = createSelect(entry.my, 'my');
     myCell.appendChild(mySelect);
     row.appendChild(myCell);
 
     const friendCell = document.createElement('td');
-    friendCell.setAttribute('data-label', "Friend's Grades");
+    friendCell.setAttribute('data-label', "Heist's Evaluation");
     const friendSelect = createSelect(entry.friend, 'friend');
     friendCell.appendChild(friendSelect);
     row.appendChild(friendCell);
 
     const historicalCell = document.createElement('td');
-    historicalCell.setAttribute('data-label', 'Historical Grades');
+    historicalCell.setAttribute('data-label', 'Historical Grade');
     const historicalSelect = createSelect(entry.historical, 'historical');
     historicalCell.appendChild(historicalSelect);
     row.appendChild(historicalCell);
 
     const finalCell = document.createElement('td');
     finalCell.className = 'final-grade';
-    finalCell.setAttribute('data-label', 'Final Grade');
+    finalCell.setAttribute('data-label', "Seal's Determination");
     const finalSelect = createSelect(entry.final, 'final');
     finalCell.appendChild(finalSelect);
     row.appendChild(finalCell);
