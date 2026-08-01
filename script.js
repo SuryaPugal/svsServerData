@@ -2,26 +2,26 @@ const gradeOptions = ['None', 'S', 'A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 
 const storageKey = 'survivor-speed-grades-v1';
 const votesStorageKey = 'survivor-speed-votes-v6';
 const defaultRows = [
-  { player: 'Ava', my: 'A-', friend: 'B+', historical: 'A', final: 'B+' },
-  { player: 'Noah', my: 'C+', friend: 'A-', historical: 'B-', final: 'B-' },
-  { player: 'Mina', my: 'A+', friend: 'S', historical: 'S', final: 'S' },
-  { player: 'Leo', my: 'D+', friend: 'C-', historical: 'C', final: 'D+' },
-  { player: 'Ivy', my: 'B', friend: 'B+', historical: 'A-', final: 'A-' },
-  { player: 'Kai', my: 'B-', friend: 'C+', historical: 'B', final: 'C+' },
-  { player: 'Zoe', my: 'A', friend: 'A', historical: 'A+', final: 'A' },
-  { player: 'Rex', my: 'C', friend: 'D+', historical: 'C-', final: 'D' },
-  { player: 'Ty', my: 'B+', friend: 'B', historical: 'C+', final: 'B' },
-  { player: 'Sora', my: 'C-', friend: 'B-', historical: 'C', final: 'C' },
-  { player: 'Quinn', my: 'A-', friend: 'A', historical: 'B+', final: 'A' },
-  { player: 'Miles', my: 'B', friend: 'B-', historical: 'B+', final: 'B+' },
-  { player: 'Nora', my: 'A', friend: 'A-', historical: 'A', final: 'A-' },
-  { player: 'Elle', my: 'C+', friend: 'C', historical: 'B-', final: 'C+' },
-  { player: 'Beck', my: 'B-', friend: 'C+', historical: 'C', final: 'B-' },
-  { player: 'Tori', my: 'A+', friend: 'A', historical: 'A-', final: 'A' },
-  { player: 'Sam', my: 'D+', friend: 'C-', historical: 'D', final: 'C-' },
-  { player: 'Juno', my: 'B+', friend: 'A-', historical: 'B', final: 'A-' },
-  { player: 'Drew', my: 'C', friend: 'B-', historical: 'C+', final: 'C-' },
-  { player: 'Piper', my: 'A-', friend: 'B+', historical: 'A', final: 'A' },
+  { player: 'Ava', my: 'A-', friend: 'B+', historical: 'A', final: 'B+', notes: '' },
+  { player: 'Noah', my: 'C+', friend: 'A-', historical: 'B-', final: 'B-', notes: '' },
+  { player: 'Mina', my: 'A+', friend: 'S', historical: 'S', final: 'S', notes: '' },
+  { player: 'Leo', my: 'D+', friend: 'C-', historical: 'C', final: 'D+', notes: '' },
+  { player: 'Ivy', my: 'B', friend: 'B+', historical: 'A-', final: 'A-', notes: '' },
+  { player: 'Kai', my: 'B-', friend: 'C+', historical: 'B', final: 'C+', notes: '' },
+  { player: 'Zoe', my: 'A', friend: 'A', historical: 'A+', final: 'A', notes: '' },
+  { player: 'Rex', my: 'C', friend: 'D+', historical: 'C-', final: 'D', notes: '' },
+  { player: 'Ty', my: 'B+', friend: 'B', historical: 'C+', final: 'B', notes: '' },
+  { player: 'Sora', my: 'C-', friend: 'B-', historical: 'C', final: 'C', notes: '' },
+  { player: 'Quinn', my: 'A-', friend: 'A', historical: 'B+', final: 'A', notes: '' },
+  { player: 'Miles', my: 'B', friend: 'B-', historical: 'B+', final: 'B+', notes: '' },
+  { player: 'Nora', my: 'A', friend: 'A-', historical: 'A', final: 'A-', notes: '' },
+  { player: 'Elle', my: 'C+', friend: 'C', historical: 'B-', final: 'C+', notes: '' },
+  { player: 'Beck', my: 'B-', friend: 'C+', historical: 'C', final: 'B-', notes: '' },
+  { player: 'Tori', my: 'A+', friend: 'A', historical: 'A-', final: 'A', notes: '' },
+  { player: 'Sam', my: 'D+', friend: 'C-', historical: 'D', final: 'C-', notes: '' },
+  { player: 'Juno', my: 'B+', friend: 'A-', historical: 'B', final: 'A-', notes: '' },
+  { player: 'Drew', my: 'C', friend: 'B-', historical: 'C+', final: 'C-', notes: '' },
+  { player: 'Piper', my: 'A-', friend: 'B+', historical: 'A', final: 'A', notes: '' },
 ];
 
 function buildRoundVotes(activePlayers, votePlan) {
@@ -404,7 +404,7 @@ function loadRows() {
       if (Array.isArray(parsed) && parsed.length) {
         const merged = defaultRows.map((defaultRow) => {
           const match = parsed.find((row) => row.player === defaultRow.player);
-          return match || defaultRow;
+          return match ? { ...defaultRow, ...match } : defaultRow;
         });
         return merged;
       }
@@ -498,6 +498,17 @@ function renderTable() {
     finalCell.appendChild(finalSelect);
     row.appendChild(finalCell);
 
+    const notesCell = document.createElement('td');
+    notesCell.setAttribute('data-label', 'Notes');
+    const notesArea = document.createElement('textarea');
+    notesArea.className = 'notes-input';
+    notesArea.placeholder = 'Add notes…';
+    notesArea.setAttribute('aria-label', `Notes for ${entry.player}`);
+    notesArea.value = entry.notes || '';
+    notesArea.rows = 2;
+    notesCell.appendChild(notesArea);
+    row.appendChild(notesCell);
+
     tbody.appendChild(row);
 
     [mySelect, friendSelect, historicalSelect, finalSelect].forEach((select) => {
@@ -507,6 +518,12 @@ function renderTable() {
         saveRows(rowsData);
         updateRow(row, rowsData[rowIndex]);
       });
+    });
+
+    notesArea.addEventListener('input', () => {
+      const rowIndex = Number(row.dataset.rowIndex);
+      rowsData[rowIndex].notes = notesArea.value;
+      saveRows(rowsData);
     });
 
     updateRow(row, entry);
