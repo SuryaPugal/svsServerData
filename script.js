@@ -86,6 +86,7 @@ function updateRow(row, entry) {
     finalSelect.value = entry.final || 'None';
     finalSelect.className = `grade-select ${getGradeClassName(finalSelect.value)}`;
     finalSelect.style.color = getGradeColor(finalSelect.value);
+    finalSelect.style.fontWeight = '700';
   }
 
   [cells[1], cells[2], cells[3]].forEach((cell) => {
@@ -94,6 +95,7 @@ function updateRow(row, entry) {
       select.value = entry[select.dataset.gradeKey] || 'None';
       select.className = `grade-select ${getGradeClassName(select.value)}`;
       select.style.color = getGradeColor(select.value);
+      select.style.fontWeight = '700';
     }
   });
 }

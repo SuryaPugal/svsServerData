@@ -108,6 +108,7 @@ td {
   background: rgba(4, 12, 22, 0.75);
   color: #f3f6fb;
   font: inherit;
+  font-weight: 700;
   cursor: pointer;
 }
 
