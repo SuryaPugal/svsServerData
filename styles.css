@@ -12,7 +12,9 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: linear-gradient(135deg, #08131f, #11253d);
+  background:
+    radial-gradient(circle at top left, rgba(120, 227, 180, 0.2), transparent 28%),
+    linear-gradient(135deg, #08131f, #11253d 55%, #0d1a2d);
 }
 
 .page {
@@ -28,22 +30,28 @@ body {
 
 .hero h1 {
   margin: 0 0 8px;
-  font-size: 2.4rem;
+  font-size: 2.6rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-shadow: 0 0 24px rgba(120, 227, 180, 0.2);
 }
 
 .hero p {
   margin: 0;
-  color: #b6c2d1;
+  color: #b9c6d7;
   font-size: 1.05rem;
 }
 
 .table-card {
-  background: rgba(9, 19, 34, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(135deg, rgba(20, 35, 56, 0.95), rgba(9, 19, 34, 0.92));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
   padding: 20px;
   overflow-x: auto;
+  backdrop-filter: blur(16px);
 }
 
 table {
@@ -58,20 +66,61 @@ td {
 }
 
 th {
-  background: #13253f;
-  color: #dfe7f1;
-  font-size: 0.95rem;
-  letter-spacing: 0.04em;
+  background: linear-gradient(180deg, rgba(32, 56, 86, 0.95), rgba(19, 37, 63, 0.95));
+  color: #e4ecf8;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+tr {
+  transition: transform 0.2s ease;
+}
+
+tr:hover {
+  transform: translateY(-2px);
+}
+
+tr:hover td {
+  background: rgba(120, 227, 180, 0.09);
 }
 
 tr:nth-child(even) td {
   background: rgba(255, 255, 255, 0.03);
 }
 
-.final-grade {
+td {
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.grade-s {
+  color: #7cf0c2;
   font-weight: 700;
-  color: #78e3b4;
+}
+
+.grade-a {
+  color: #8fe3ff;
+  font-weight: 700;
+}
+
+.grade-b {
+  color: #f7d96c;
+  font-weight: 700;
+}
+
+.grade-c {
+  color: #ffb36b;
+  font-weight: 700;
+}
+
+.grade-d {
+  color: #ff7a7a;
+  font-weight: 700;
+}
+
+.grade-f {
+  color: #ff4d6d;
+  font-weight: 700;
 }
 
 @media (max-width: 700px) {

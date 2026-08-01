@@ -17,6 +17,13 @@ rows.forEach((row) => {
   const historicalGrade = gradeMap[cells[3].textContent.trim().toUpperCase()];
   const finalGradeCell = cells[4];
   const average = (myGrade + friendGrade + historicalGrade) / 3;
+  const finalLetter = getLetterGrade(average);
 
-  finalGradeCell.textContent = getLetterGrade(average);
+  finalGradeCell.textContent = finalLetter;
+  finalGradeCell.classList.add(`grade-${finalLetter.toLowerCase()}`);
+
+  [cells[1], cells[2], cells[3]].forEach((cell) => {
+    const grade = cell.textContent.trim().toUpperCase();
+    cell.classList.add(`grade-${grade.toLowerCase()}`);
+  });
 });
