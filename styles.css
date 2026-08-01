@@ -103,8 +103,20 @@ td {
   font-weight: 700;
 }
 
+.grade-a-plus,
+.grade-a-minus {
+  color: #67d7ff;
+  font-weight: 700;
+}
+
 .grade-b {
   color: #f7d96c;
+  font-weight: 700;
+}
+
+.grade-b-plus,
+.grade-b-minus {
+  color: #ffd76b;
   font-weight: 700;
 }
 
@@ -113,8 +125,20 @@ td {
   font-weight: 700;
 }
 
+.grade-c-plus,
+.grade-c-minus {
+  color: #ff9f5b;
+  font-weight: 700;
+}
+
 .grade-d {
   color: #ff7a7a;
+  font-weight: 700;
+}
+
+.grade-d-plus,
+.grade-d-minus {
+  color: #ff6666;
   font-weight: 700;
 }
 
