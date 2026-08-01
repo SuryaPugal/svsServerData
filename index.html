@@ -3,17 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Survivor Speed Rankings</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>SVS Speed Rankings</title>
+    <link rel="stylesheet" href="styles.css?v=6" />
   </head>
   <body>
     <main class="page">
       <header class="hero">
-        <h1>Survivor Speed Rankings</h1>
+        <h1>SVS Speed Rankings</h1>
         <p>Compare player performances using S–F letter grades with plus and minus modifiers across your own scores, a friend's scores, and historical results.</p>
       </header>
 
-      <section class="table-card">
+      <div class="tab-switcher" role="tablist" aria-label="Site sections">
+        <button class="tab-button active" type="button" role="tab" aria-selected="true" aria-controls="rankings-panel" id="tab-rankings" data-tab="rankings">Rankings</button>
+        <button class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="votes-panel" id="tab-votes" data-tab="votes">Voting Chart</button>
+        <button class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="tribes-panel" id="tab-tribes" data-tab="tribes">Tribes</button>
+        <button class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="alliances-panel" id="tab-alliances" data-tab="alliances">Alliance Graph</button>
+      </div>
+
+      <section class="table-card tab-panel active" id="rankings-panel" role="tabpanel" aria-labelledby="tab-rankings">
         <p class="helper-text">Edit any grade below — your changes are saved in this browser.</p>
         <table>
           <thead>
@@ -25,11 +32,41 @@
               <th scope="col">Final Grade</th>
             </tr>
           </thead>
-          <tbody></tbody>
+          <tbody id="rankings-body"></tbody>
         </table>
+      </section>
+
+      <section class="table-card tab-panel" id="votes-panel" role="tabpanel" aria-labelledby="tab-votes" hidden>
+        <p class="helper-text">Each row is a player, each column is a round, and the final row shows the eliminated player and their vote count for that round. Once exactly three finalists remain, the jury vote appears in the final column.</p>
+        <table class="vote-table">
+          <thead id="votes-head"></thead>
+          <tbody id="votes-body"></tbody>
+        </table>
+      </section>
+
+      <section class="table-card tab-panel" id="tribes-panel" role="tabpanel" aria-labelledby="tab-tribes" hidden>
+        <p class="helper-text">Original tribes, both swaps, and the merge tribe for our 20-player season, ordered by placement.</p>
+        <table class="tribe-table">
+          <thead>
+            <tr>
+              <th scope="col">Castaway</th>
+              <th scope="col">Original Tribe</th>
+              <th scope="col">Swap 1</th>
+              <th scope="col">Swap 2</th>
+              <th scope="col">Merge</th>
+              <th scope="col">Finish</th>
+            </tr>
+          </thead>
+          <tbody id="tribes-body"></tbody>
+        </table>
+      </section>
+
+      <section class="table-card tab-panel" id="alliances-panel" role="tabpanel" aria-labelledby="tab-alliances" hidden>
+        <p class="helper-text">Players are shown as nodes, and named alliances connect to the players who belong to them.</p>
+        <div id="alliance-graph" class="alliance-graph"></div>
       </section>
     </main>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=8"></script>
   </body>
 </html>
