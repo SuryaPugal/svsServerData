@@ -11,7 +11,34 @@ function getGradeClassName(grade) {
   if (!grade || grade === 'None' || grade === '—') {
     return 'grade-none';
   }
-  return `grade-${grade.toLowerCase().replace('+', 'plus').replace('-', 'minus')}`;
+
+  const normalized = grade.toLowerCase().replace(/\+/g, '-plus').replace(/-/g, '-minus');
+  return `grade-${normalized}`;
+}
+
+function getGradeColor(grade) {
+  if (!grade || grade === 'None' || grade === '—') {
+    return '#8fa3b0';
+  }
+
+  const gradeColors = {
+    S: '#7cf0c2',
+    'A+': '#67d7ff',
+    A: '#8fe3ff',
+    'A-': '#67d7ff',
+    'B+': '#ffd76b',
+    B: '#f7d96c',
+    'B-': '#ffd76b',
+    'C+': '#ff9f5b',
+    C: '#ffb36b',
+    'C-': '#ff9f5b',
+    'D+': '#ff6666',
+    D: '#ff7a7a',
+    'D-': '#ff6666',
+    F: '#ff4d6d',
+  };
+
+  return gradeColors[grade] || '#f3f6fb';
 }
 
 function loadRows() {
@@ -58,6 +85,7 @@ function updateRow(row, entry) {
   if (finalSelect) {
     finalSelect.value = entry.final || 'None';
     finalSelect.className = `grade-select ${getGradeClassName(finalSelect.value)}`;
+    finalSelect.style.color = getGradeColor(finalSelect.value);
   }
 
   [cells[1], cells[2], cells[3]].forEach((cell) => {
@@ -65,6 +93,7 @@ function updateRow(row, entry) {
     if (select) {
       select.value = entry[select.dataset.gradeKey] || 'None';
       select.className = `grade-select ${getGradeClassName(select.value)}`;
+      select.style.color = getGradeColor(select.value);
     }
   });
 }
