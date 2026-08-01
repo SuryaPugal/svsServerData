@@ -117,11 +117,11 @@ tr {
   transition: transform 0.2s ease;
 }
 
-tr:hover {
+tr:not(.notes-row):hover {
   transform: translateY(-2px);
 }
 
-tr:hover td {
+tr:not(.notes-row):hover td {
   background: rgba(120, 227, 180, 0.09);
 }
 
@@ -442,8 +442,7 @@ td {
 
 .notes-input {
   width: 100%;
-  min-width: 180px;
-  padding: 8px 10px;
+  padding: 10px 12px;
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 10px;
   background: rgba(4, 12, 22, 0.75);
@@ -462,6 +461,50 @@ td {
   outline: none;
   border-color: rgba(120, 227, 180, 0.5);
   box-shadow: 0 0 0 2px rgba(120, 227, 180, 0.14);
+}
+
+.player-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.notes-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #9fb3c8;
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+  width: fit-content;
+}
+
+.notes-toggle:hover {
+  background: rgba(120, 227, 180, 0.12);
+  border-color: rgba(120, 227, 180, 0.36);
+  color: #78e3b4;
+}
+
+.notes-row td {
+  background: rgba(4, 12, 22, 0.55);
+  padding: 10px 16px 14px;
+  border-top: none;
+}
+
+.notes-row-hidden {
+  display: none;
+}
+
+.notes-expand-cell {
+  padding: 8px 16px 14px !important;
 }
 
 @media (max-width: 700px) {
